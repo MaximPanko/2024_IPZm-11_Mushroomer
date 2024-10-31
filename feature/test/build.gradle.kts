@@ -1,27 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     id("kotlin-kapt")
-    alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.kotlin.serialization)
+    id("com.google.dagger.hilt.android")
     alias(libs.plugins.compose.compiler)
+
 }
 
 android {
-    namespace = "com.lntu.mushroomer"
-    compileSdk = Versions.compileSdk
+    namespace = "com.lntu.test"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.lntu.mushroomer"
-        minSdk = Versions.minSdk
-        targetSdk = Versions.targetSdk
-        versionCode = Versions.versionCode
-        versionName = Versions.versionName
+        minSdk = 28
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -34,31 +28,22 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = Versions.javaVersion
-        targetCompatibility = Versions.javaVersion
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = Versions.jvmTarget
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
-    //modules
+
     implementation(project(mapOf("path" to ":core:domain")))
-    implementation(project(mapOf("path" to ":core:data")))
     implementation(project(mapOf("path" to ":core:presentation")))
-    implementation(project(mapOf("path" to ":feature:test")))
+
 
     //libs
     implementation(libs.androidx.core.ktx)
@@ -67,17 +52,14 @@ dependencies {
     //compose
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
-    debugImplementation(libs.androidx.ui.tooling)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.viewmodel)
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
     //dagger hilt
     implementation(libs.dagger.hilt.android)
     implementation(libs.dagger.hilt.navigation.compose)
     kapt(libs.dagger.hilt.compiler)
-}
-
-kapt {
-    correctErrorTypes = true
 }
