@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Mushroomer"
 include(":app")
-include(":feature:test")
 include(":core:data")
 include(":core:domain")
 include(":core:presentation")
+include(":feature:Screens")

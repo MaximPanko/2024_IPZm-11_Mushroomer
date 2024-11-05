@@ -58,7 +58,7 @@ dependencies {
     implementation(project(mapOf("path" to ":core:domain")))
     implementation(project(mapOf("path" to ":core:data")))
     implementation(project(mapOf("path" to ":core:presentation")))
-    implementation(project(mapOf("path" to ":feature:test")))
+    implementation(project(mapOf("path" to ":feature:Screens")))
 
     //libs
     implementation(libs.androidx.core.ktx)

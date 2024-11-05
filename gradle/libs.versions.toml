@@ -28,10 +28,16 @@
     agp = "8.6.0"
     kotlin = "2.0.20"
 
+    # Realm
+    realm = "2.3.0"
+material = "1.12.0"
 
 [libraries]
     androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
     androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+
+    # Realm
+    realm = { group = "io.realm.kotlin", name = "realm-gradle-plugin", version.ref = "realm" }
 
     # Tests
     junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -61,7 +67,7 @@
     dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
     dagger-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
     dagger-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
-
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
     android-application = { id = "com.android.application", version.ref = "agp" }

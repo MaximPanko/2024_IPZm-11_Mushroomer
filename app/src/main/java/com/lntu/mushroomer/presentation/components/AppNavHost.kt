@@ -4,15 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.lntu.screens.hike.HikesRoute
+import com.lntu.screens.hike.hikesScreenRoute
 
 @Composable
 fun AppNavHost(navHostController: NavHostController) {
     NavHost(
         navController = navHostController,
-        startDestination = com.lntu.test.testRoute
+        startDestination = hikesScreenRoute
     ) {
-        composable(com.lntu.test.testRoute) {
-            com.lntu.test.TestRoute()
+        composable(hikesScreenRoute) {
+            HikesRoute()
         }
     }
 }
