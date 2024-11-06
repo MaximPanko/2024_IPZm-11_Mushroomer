@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.lntu.presentation.components.bottomNavigation
 
 const val hikesScreenRoute = "hikes_screen_route"
 
@@ -29,7 +30,8 @@ internal fun HikesScreen (
     state: HikesScreenUiState,
 ) {
     Scaffold(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
+        bottomBar = { bottomNavigation() }
     ) { innerPadding ->
         Column(
             modifier = Modifier

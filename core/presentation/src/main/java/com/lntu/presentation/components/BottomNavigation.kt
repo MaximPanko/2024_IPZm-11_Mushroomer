@@ -1,5 +1,6 @@
 package com.lntu.presentation.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.IconButton
@@ -13,13 +14,19 @@ fun bottomNavigation() {
         modifier = Modifier.fillMaxWidth()
     ) {
         IconButton(
-            onClick = { /* HOME */ }
+            onClick = { /* HOME */ },
+            modifier = Modifier.weight(1f)
+                .background(androidx.compose.ui.graphics.Color.Blue)
         ) {  }
         IconButton(
-            onClick = { /* CREATE HIKE */ }
+            onClick = { /* CREATE HIKE */ },
+            modifier = Modifier.weight(1f)
+                .background(androidx.compose.ui.graphics.Color.Green)
         ) {  }
         IconButton(
-            onClick = { /* SETTINGS */ }
+            onClick = { /* SETTINGS */ },
+            modifier = Modifier.weight(1f)
+                .background(androidx.compose.ui.graphics.Color.Red)
         ) {  }
     }
 }
