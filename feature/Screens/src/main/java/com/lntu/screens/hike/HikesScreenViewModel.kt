@@ -1,7 +1,7 @@
 package com.lntu.screens.hike
 
 import androidx.lifecycle.ViewModel
-import com.lntu.domain.navigation.Navigator
+import com.lntu.domain.navigation.navigation.Navigator
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

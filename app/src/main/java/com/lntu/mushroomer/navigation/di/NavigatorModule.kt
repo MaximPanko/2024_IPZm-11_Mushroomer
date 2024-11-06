@@ -1,6 +1,6 @@
 package com.lntu.mushroomer.navigation.di
 
-import com.lntu.domain.navigation.Navigator
+import com.lntu.domain.navigation.navigation.Navigator
 import com.lntu.mushroomer.navigation.NavigatorImpl
 import dagger.Binds
 import dagger.Module

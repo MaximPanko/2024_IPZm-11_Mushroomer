@@ -1,4 +1,4 @@
-package com.lntu.domain.navigation
+package com.lntu.domain.navigation.navigation
 
 import androidx.navigation.NavHostController
 
