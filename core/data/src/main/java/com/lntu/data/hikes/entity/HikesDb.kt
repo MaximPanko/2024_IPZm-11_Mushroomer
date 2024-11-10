@@ -1,4 +1,4 @@
-package com.lntu.data.hikes
+package com.lntu.data.hikes.entity
 
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
