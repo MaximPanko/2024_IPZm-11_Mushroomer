@@ -27,6 +27,7 @@
     # Plugins
     agp = "8.6.0"
     kotlin = "2.0.20"
+    serialization = "1.7.3"
 
     # Realm
     realm = "2.3.0"
@@ -35,6 +36,7 @@
 [libraries]
     androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
     androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+    kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
     # Realm
     realm = { group = "io.realm.kotlin", name = "library-base", version.ref = "realm" }

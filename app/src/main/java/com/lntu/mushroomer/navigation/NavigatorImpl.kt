@@ -1,7 +1,7 @@
 package com.lntu.mushroomer.navigation
 
 import androidx.navigation.NavHostController
-import com.lntu.domain.navigation.navigation.Navigator
+import com.lntu.domain.navigation.Navigator
 import javax.inject.Inject
 
 internal class NavigatorImpl @Inject constructor() : Navigator {
@@ -20,4 +20,7 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
         navHostController?.popBackStack()
     }
 
+    override fun navigateToCreateHike(id: String) {
+        navHostController?.navigate("create_hike")
+    }
 }

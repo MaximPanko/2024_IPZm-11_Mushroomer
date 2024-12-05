@@ -2,9 +2,8 @@ package com.lntu.data.hikes
 
 import com.lntu.data.hikes.dataSource.HikesDataSource
 import com.lntu.data.hikes.dataSource.HikesMapper
-import com.lntu.data.hikes.entity.HikesDb
-import com.lntu.domain.navigation.hikes.HikesRepository
-import com.lntu.domain.navigation.hikes.entity.Hike
+import com.lntu.domain.hikes.HikesRepository
+import com.lntu.domain.hikes.Hike
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -30,6 +29,10 @@ internal class HikesRepositoryImpl @Inject constructor(
         hikesDataSource.deleteHike(
             id = id
         )
+    }
+
+    override suspend fun getAllHikes(): Flow<List<Hike>> {
+        return hikesDataSource.getAllHikes().map { it.map { HikesMapper().mapFromHikesDbToHike(it) } }
     }
 
     override suspend fun getHikeById(id: String): Flow<Hike> {

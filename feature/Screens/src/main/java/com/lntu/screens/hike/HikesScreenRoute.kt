@@ -9,25 +9,36 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lntu.presentation.components.bottomNavigation
+import com.lntu.screens.hike.components.HikeItem
+import java.time.LocalDateTime
+import java.time.Month
 
 const val hikesScreenRoute = "hikes_screen_route"
 
 @Composable
 fun HikesRoute(
-    hikesScreenViewModel: HikesScreenViewModel = hiltViewModel()
+    viewModel: HikesScreenViewModel = hiltViewModel()
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
     HikesScreen(
-        state = HikesScreenUiState.DEFAULT
+        state = state,
+        createHike = viewModel::onCreateNewHikeClicked
     )
 }
 
 @Composable
 internal fun HikesScreen (
     state: HikesScreenUiState,
+    createHike: () -> Unit,
+    onHikeClicked: (String) -> Unit = {},
+    onMoreClicked: (HikesScreenUiState.HikeUiState) -> Unit = {}
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -40,7 +51,7 @@ internal fun HikesScreen (
         ) {
             Box {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { createHike() },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text("Add new hike")
@@ -51,7 +62,9 @@ internal fun HikesScreen (
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-
+                state.hikes.forEach { hike ->
+                    HikeItem(hike, onHikeClicked, onMoreClicked)
+                }
             }
         }
     }
@@ -61,6 +74,15 @@ internal fun HikesScreen (
 @Composable
 internal fun HikesScreenPreview() {
     HikesScreen(
-        state = HikesScreenUiState.DEFAULT,
+        state = HikesScreenUiState(
+            hikes = listOf(
+                HikesScreenUiState.HikeUiState(
+                    id = "1",
+                    name = "Hike name",
+                    date = LocalDateTime.of(2021, Month.JANUARY, 1, 12, 0)
+                )
+            )
+        ),
+        createHike = { }
     )
 }

@@ -1,4 +1,4 @@
-package com.lntu.domain.navigation.hikes.entity
+package com.lntu.domain.hikes
 
 import java.time.LocalDateTime
 

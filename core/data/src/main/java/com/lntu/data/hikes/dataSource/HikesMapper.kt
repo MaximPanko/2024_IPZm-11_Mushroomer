@@ -1,7 +1,7 @@
 package com.lntu.data.hikes.dataSource
 
 import com.lntu.data.hikes.entity.HikesDb
-import com.lntu.domain.navigation.hikes.entity.Hike
+import com.lntu.domain.hikes.Hike
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId

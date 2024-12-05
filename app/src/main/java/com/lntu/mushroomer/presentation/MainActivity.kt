@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.rememberNavController
-import com.lntu.domain.navigation.navigation.Navigator
+import com.lntu.domain.navigation.Navigator
 import com.lntu.mushroomer.presentation.components.AppNavHost
 import com.lntu.mushroomer.ui.theme.MushroomerTheme
 import dagger.hilt.android.AndroidEntryPoint

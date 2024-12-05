@@ -1,6 +1,7 @@
 package com.lntu.data.hikes.dataSource
 
 import com.lntu.data.hikes.entity.HikesDb
+import com.lntu.domain.coroutines.IoDispatcher
 import io.realm.kotlin.Realm
 import io.realm.kotlin.ext.query
 import kotlinx.coroutines.CoroutineDispatcher
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 class HikesDataSource @Inject constructor(
     private val realm: Realm,
-    private val ioDispatcher: CoroutineDispatcher
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
     suspend fun addNewHike(name: String) : HikesDb {
         return withContext(ioDispatcher) {
@@ -48,6 +49,13 @@ class HikesDataSource @Inject constructor(
                     .let { delete(it) }
             }
         }
+    }
+
+    fun getAllHikes(): Flow<List<HikesDb>> {
+        return realm
+            .query<HikesDb>()
+            .asFlow()
+            .map { it.list }
     }
 
     fun getHikeById(id: String): Flow<HikesDb> {
