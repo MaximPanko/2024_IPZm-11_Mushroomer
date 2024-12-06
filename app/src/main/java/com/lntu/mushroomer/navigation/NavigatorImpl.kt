@@ -20,7 +20,15 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
         navHostController?.popBackStack()
     }
 
-    override fun navigateToCreateHike(id: String) {
+    override fun navigateToHikes() {
+        navHostController?.navigate("hikes_screen_route")
+    }
+
+    override fun navigateToCreateHike() {
         navHostController?.navigate("create_hike")
+    }
+
+    override fun navigateToHikeDetails(id: String) {
+        navHostController?.navigate("hike_details_screen_route")
     }
 }

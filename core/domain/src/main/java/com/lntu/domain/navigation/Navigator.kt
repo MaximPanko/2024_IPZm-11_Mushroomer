@@ -6,5 +6,7 @@ interface Navigator {
     fun attach(_navHostController: NavHostController)
     fun detach()
     fun popBackStack()
-    fun navigateToCreateHike(id: String)
+    fun navigateToHikes()
+    fun navigateToCreateHike()
+    fun navigateToHikeDetails(id: String)
 }
