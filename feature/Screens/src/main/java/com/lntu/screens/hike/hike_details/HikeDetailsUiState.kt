@@ -5,9 +5,9 @@ data class HikeDetailsUiState(
 ) {
     data class MushroomUiState(
         val id: String,
-        val name: String?,
-        val description: String?,
-        val weight: String?
+        val name: String,
+        val description: String? = "Description",
+        val weight: Double? = 543.2,
     )
 
     companion object {

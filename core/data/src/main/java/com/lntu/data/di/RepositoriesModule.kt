@@ -1,7 +1,9 @@
 package com.lntu.data.di
 
 import com.lntu.data.hikes.HikesRepositoryImpl
+import com.lntu.data.mushrooms.MushroomesRepositoryImpl
 import com.lntu.domain.hikes.HikesRepository
+import com.lntu.domain.mushrooms.MushroomsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,5 +16,9 @@ abstract class RepositoriesModule {
 
     @Singleton
     @Binds
-    internal abstract fun provideUserProfileRepository(impl: HikesRepositoryImpl): HikesRepository
+    internal abstract fun provideHikesRepository(impl: HikesRepositoryImpl): HikesRepository
+    
+    @Singleton
+    @Binds
+    internal abstract fun provideMushroomsRepository(impl: MushroomesRepositoryImpl): MushroomsRepository
 }

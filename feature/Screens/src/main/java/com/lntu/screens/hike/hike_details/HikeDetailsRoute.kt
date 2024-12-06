@@ -100,7 +100,7 @@ fun HikeDetailsScreenPreview() {
                     id = "1",
                     name = "name",
                     description = "description",
-                    weight = "weight"
+                    weight = 542.3
                 )
             )
         ),

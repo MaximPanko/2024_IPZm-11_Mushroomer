@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
@@ -50,7 +49,7 @@ fun MushroomItem(
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Text(
-                    mushroom.weight ?: "WEIGHT",
+                    mushroom.weight.toString() ?: "43.3",
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
@@ -74,7 +73,7 @@ fun MushroomItemPreview() {
             id = "1",
             name = "name",
             description = "description",
-            weight = "weight"
+            weight = 432.3
         ),
         onMushroomClicked = {},
         onMoreClicked = {}
