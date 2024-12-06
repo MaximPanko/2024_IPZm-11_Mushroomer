@@ -4,6 +4,7 @@ import com.lntu.data.mushrooms.entity.MushroomesDb
 import com.lntu.domain.mushrooms.Mushroom
 
 class MushroomesMapper {
+
     fun mapFromMushroomsDbToMushrooms(mushroomesDb: List<MushroomesDb>): List<Mushroom> {
         return mushroomesDb.map { mapFromMushroomsDbToMushroom(it) }
     }

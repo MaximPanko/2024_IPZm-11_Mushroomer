@@ -1,5 +1,6 @@
 package com.lntu.data.mushrooms.dataSource
 
+import com.lntu.data.hikes.entity.HikesDb
 import com.lntu.data.mushrooms.entity.MushroomesDb
 import com.lntu.domain.coroutines.IoDispatcher
 import io.realm.kotlin.Realm
@@ -18,7 +19,7 @@ class MushroomesDataSource @Inject constructor(
     suspend fun addNewMushroom(hikeId: String, name: String, description: String, weight: Double) : MushroomesDb {
         return withContext(ioDispatcher) {
             val mushroomDb = MushroomesDb().apply {
-                this.hikeId = ObjectId(hikeId).toString()
+                this.hikeId = hikeId
                 this.name = name
                 this.description = description
                 this.weight = weight
@@ -32,7 +33,7 @@ class MushroomesDataSource @Inject constructor(
     suspend fun updateMushroom(id: String, name: String, description: String, weight: Double) : MushroomesDb {
         return withContext(ioDispatcher) {
             realm.writeBlocking {
-                this.query<MushroomesDb>("_id == $0", ObjectId(id))
+                this.query<MushroomesDb>("id == $0", ObjectId(id))
                     .find()
                     .first()
                     .apply {
@@ -47,7 +48,7 @@ class MushroomesDataSource @Inject constructor(
     suspend fun deleteMushroom(id: String) {
         return withContext(ioDispatcher) {
             realm.writeBlocking {
-                this.query<MushroomesDb>("_id == $0", ObjectId(id))
+                this.query<MushroomesDb>("id == $0", ObjectId(id))
                     .find()
                     .first()
                     .let { delete(it) }
@@ -64,13 +65,13 @@ class MushroomesDataSource @Inject constructor(
 
     fun getMushroomById(id: String): Flow<MushroomesDb> {
         return realm
-            .query<MushroomesDb>("_id == $0", ObjectId(id))
+            .query<MushroomesDb>("id == $0", ObjectId(id))
             .first()
             .asFlow()
             .map { it.obj!! }
     }
 
-    fun getMushroomByHikeId(hikeId: String): Flow<List<MushroomesDb>> {
+    fun getMushroomsByHikeId(hikeId: String): Flow<List<MushroomesDb>> {
         return realm
             .query<MushroomesDb>("hikeId == $0", hikeId)
             .asFlow()

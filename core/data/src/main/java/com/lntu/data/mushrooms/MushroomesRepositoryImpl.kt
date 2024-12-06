@@ -45,6 +45,6 @@ class MushroomesRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMushroomsByHikeId(hikeId: String): Flow<List<Mushroom>> {
-        return mushroomsDataSource.getMushroomByHikeId(hikeId).map { MushroomesMapper().mapFromMushroomsDbToMushrooms(it) }
+        return mushroomsDataSource.getMushroomsByHikeId(hikeId).map { it.map { MushroomesMapper().mapFromMushroomsDbToMushroom(it) } }
     }
 }

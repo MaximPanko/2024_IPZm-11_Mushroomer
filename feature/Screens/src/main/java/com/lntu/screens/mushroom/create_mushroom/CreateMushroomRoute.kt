@@ -26,15 +26,17 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.serialization.Serializable
 
-const val createMushroomRoute = "create_mushroom"
-
 object CreateMushroomConstants {
     const val NAME_MUSHROOM_MAX_SYMBOLS = 50
     const val DESCRIPTION_MUSHROOM_MAX_SYMBOLS = 100
 
     @Serializable
     data class Args(
-        val id: String? = null
+        val id: String? = null,
+        val hikeId: String,
+        val name: String? = null,
+        val description: String? = null,
+        val weight: Double? = null
     )
 }
 
@@ -91,25 +93,21 @@ internal fun CreateMushroomScreen(
                     Text("Enter name")
                     TextField(
                         value = state.name,
-                        onValueChange = { mushroomNameChanged },
+                        onValueChange = { mushroomNameChanged(it) },
                     )
                 }
                 Column {
                     Text("Description")
                     TextField(
                         value = state.description,
-                        onValueChange = { mushroomDescriptionChanged },
+                        onValueChange = { mushroomDescriptionChanged(it) },
                     )
                 }
                 Column {
                     Text("Weight")
                     TextField(
                         value = state.weight.toString(),
-                        onValueChange = { newValue ->
-                            if (newValue.all { it.isDigit() }) {
-                                mushroomWeightChanged(newValue.toDouble())
-                            }
-                        },
+                        onValueChange = { mushroomWeightChanged(it.toDouble()) },
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
                     )
                 }

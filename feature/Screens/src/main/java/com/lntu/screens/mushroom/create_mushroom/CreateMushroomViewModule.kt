@@ -19,15 +19,23 @@ class CreateMushroomViewModule @Inject constructor(
     private val navigator: Navigator,
     private val mushroomsRepository: MushroomsRepository
 ) : ViewModel() {
-    private val id: String? = savedStateHandle.toRoute<CreateMushroomConstants.Args>().id
-    private val _state = MutableStateFlow(CreateMushroomUiState(id = id))
+    private val args = savedStateHandle.toRoute<CreateMushroomConstants.Args>()
+    private val _state = MutableStateFlow(
+        CreateMushroomUiState(
+            id = args.id,
+            hikeId = args.hikeId,
+            name = args.name ?: "",
+            description = args.description ?: "",
+            weight = args.weight ?: 0.0
+        )
+    )
     internal val state: StateFlow<CreateMushroomUiState>
         get() = _state
 
     init {
         if (state.value.isEditMode) {
             viewModelScope.launch {
-                val mushroom = mushroomsRepository.getMushroomById(id!!).first()
+                val mushroom = mushroomsRepository.getMushroomById(args.id!!).first()
                 _state.value = _state.value.copy(
                     name = mushroom.name,
                     description = mushroom.description ?: "",

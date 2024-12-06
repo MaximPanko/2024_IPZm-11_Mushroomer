@@ -22,8 +22,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lntu.screens.mushroom.components.MushroomItem
+import kotlinx.serialization.Serializable
 
-const val hikeDetailsScreenRoute = "hike_details_screen_route"
+object HikeDetailsScreenConstants {
+    @Serializable
+    data class Args(
+        val id: String
+    )
+}
+
 
 @Composable
 fun HikeDetailsRoute(
@@ -34,8 +41,8 @@ fun HikeDetailsRoute(
     HikeDetailsScreen(
         state = state,
         onBackClicked = viewModel::onBackClicked,
-        onMushroomClicked = {},
-        onAddMushroomClicked = {}
+        onMushroomClicked = viewModel::onMushroomClicked,
+        onAddMushroomClicked = viewModel::onAddMushroomClicked
     )
 }
 

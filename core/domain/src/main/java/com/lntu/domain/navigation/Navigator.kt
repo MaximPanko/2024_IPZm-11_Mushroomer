@@ -9,5 +9,6 @@ interface Navigator {
     fun navigateToHikes()
     fun navigateToCreateHike()
     fun navigateToHikeDetails(id: String)
-    fun navigateToCreateMushroom()
+    fun navigateToCreateMushroom(id: String?, hikeId: String, name: String?, description: String?, weight: Double?)
+    fun navigateToMushroomDetails(id: String)
 }
