@@ -1,4 +1,4 @@
-package com.lntu.screens.mushroom
+package com.lntu.screens.mushroom.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -70,6 +70,7 @@ fun MushroomItem(
 fun MushroomItemPreview() {
     MushroomItem(
         mushroom = HikeDetailsUiState.MushroomUiState(
+            hikeId = "1",
             id = "1",
             name = "name",
             description = "description",

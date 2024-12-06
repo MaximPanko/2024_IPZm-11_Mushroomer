@@ -11,6 +11,7 @@ class MushroomesMapper {
     fun mapFromMushroomsDbToMushroom(mushroomesDb: MushroomesDb): Mushroom {
         return Mushroom(
             id = mushroomesDb.id.toHexString(),
+            hikeId = mushroomesDb.hikeId,
             name = mushroomesDb.name,
             description = mushroomesDb.description,
             weight = mushroomesDb.weight

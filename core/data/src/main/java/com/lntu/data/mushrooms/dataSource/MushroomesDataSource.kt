@@ -15,9 +15,10 @@ class MushroomesDataSource @Inject constructor(
     private val realm: Realm,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
-    suspend fun addNewMushroom(name: String) : MushroomesDb {
+    suspend fun addNewMushroom(hikeId: String, name: String, description: String, weight: Double) : MushroomesDb {
         return withContext(ioDispatcher) {
             val mushroomDb = MushroomesDb().apply {
+                this.hikeId = ObjectId(hikeId).toString()
                 this.name = name
                 this.description = description
                 this.weight = weight
@@ -28,7 +29,7 @@ class MushroomesDataSource @Inject constructor(
         }
     }
 
-    suspend fun updateMushroom(id: String, name: String) : MushroomesDb {
+    suspend fun updateMushroom(id: String, name: String, description: String, weight: Double) : MushroomesDb {
         return withContext(ioDispatcher) {
             realm.writeBlocking {
                 this.query<MushroomesDb>("_id == $0", ObjectId(id))
@@ -36,6 +37,8 @@ class MushroomesDataSource @Inject constructor(
                     .first()
                     .apply {
                         this.name = name
+                        this.description = description
+                        this.weight = weight
                     }
             }
         }
@@ -65,5 +68,12 @@ class MushroomesDataSource @Inject constructor(
             .first()
             .asFlow()
             .map { it.obj!! }
+    }
+
+    fun getMushroomByHikeId(hikeId: String): Flow<List<MushroomesDb>> {
+        return realm
+            .query<MushroomesDb>("hikeId == $0", hikeId)
+            .asFlow()
+            .map { it.list }
     }
 }

@@ -12,16 +12,21 @@ class MushroomesRepositoryImpl @Inject constructor(
     private val mushroomsDataSource: MushroomesDataSource
     ) : MushroomsRepository {
 
-    override suspend fun addNewMushroom(name: String) {
+    override suspend fun addNewMushroom(hikeId: String, name: String, description: String, weight: Double) {
         mushroomsDataSource.addNewMushroom(
-            name = name
+            hikeId = hikeId,
+            name = name,
+            description = description,
+            weight = weight
         )
     }
 
-    override suspend fun updateMushroom(id: String, name: String) {
+    override suspend fun updateMushroom(id: String, name: String, description: String, weight: Double) {
         mushroomsDataSource.updateMushroom(
             id = id,
-            name = name
+            name = name,
+            description = description,
+            weight = weight
         )
     }
 
@@ -37,5 +42,9 @@ class MushroomesRepositoryImpl @Inject constructor(
 
     override suspend fun getMushroomById(id: String): Flow<Mushroom> {
         return mushroomsDataSource.getMushroomById(id).map { MushroomesMapper().mapFromMushroomsDbToMushroom(it) }
+    }
+
+    override suspend fun getMushroomsByHikeId(hikeId: String): Flow<List<Mushroom>> {
+        return mushroomsDataSource.getMushroomByHikeId(hikeId).map { MushroomesMapper().mapFromMushroomsDbToMushrooms(it) }
     }
 }

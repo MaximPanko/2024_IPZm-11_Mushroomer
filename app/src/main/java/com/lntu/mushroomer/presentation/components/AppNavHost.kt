@@ -10,6 +10,8 @@ import com.lntu.screens.hike.create_hike.createHikeRoute
 import com.lntu.screens.hike.hike_details.HikeDetailsRoute
 import com.lntu.screens.hike.hike_details.hikeDetailsScreenRoute
 import com.lntu.screens.hike.hikesScreenRoute
+import com.lntu.screens.mushroom.create_mushroom.CreateMushroomRoute
+import com.lntu.screens.mushroom.create_mushroom.createMushroomRoute
 
 @Composable
 fun AppNavHost(navHostController: NavHostController) {
@@ -25,6 +27,9 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable(hikeDetailsScreenRoute) {
             HikeDetailsRoute()
+        }
+        composable(createMushroomRoute) {
+            CreateMushroomRoute()
         }
     }
 }

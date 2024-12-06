@@ -31,4 +31,8 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
     override fun navigateToHikeDetails(id: String) {
         navHostController?.navigate("hike_details_screen_route")
     }
+
+    override fun navigateToCreateMushroom() {
+        navHostController?.navigate("create_mushroom")
+    }
 }

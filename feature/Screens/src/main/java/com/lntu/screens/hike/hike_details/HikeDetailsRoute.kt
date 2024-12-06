@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.lntu.screens.mushroom.MushroomItem
+import com.lntu.screens.mushroom.components.MushroomItem
 
 const val hikeDetailsScreenRoute = "hike_details_screen_route"
 
@@ -95,8 +95,10 @@ internal fun HikeDetailsScreen(
 fun HikeDetailsScreenPreview() {
     HikeDetailsScreen(
         state = HikeDetailsUiState(
+            id = "1",
             mushrooms = listOf(
                 HikeDetailsUiState.MushroomUiState(
+                    hikeId = "1",
                     id = "1",
                     name = "name",
                     description = "description",

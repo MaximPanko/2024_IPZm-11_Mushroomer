@@ -1,6 +1,7 @@
 package com.lntu.data.di
 
 import com.lntu.data.hikes.entity.HikesDb
+import com.lntu.data.mushrooms.entity.MushroomesDb
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +25,6 @@ class RealmModule {
 }
 
 val dbEntities = setOf(
-    HikesDb::class
+    HikesDb::class,
+    MushroomesDb::class
 )

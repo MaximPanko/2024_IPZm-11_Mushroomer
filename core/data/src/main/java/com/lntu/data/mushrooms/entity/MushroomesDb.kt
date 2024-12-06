@@ -8,6 +8,7 @@ import org.mongodb.kbson.ObjectId
 class MushroomesDb: RealmObject {
     @PrimaryKey
     var id: ObjectId = BsonObjectId()
+    var hikeId: String = ""
     var name: String = ""
     var description: String = ""
     var weight: Double = 0.0
