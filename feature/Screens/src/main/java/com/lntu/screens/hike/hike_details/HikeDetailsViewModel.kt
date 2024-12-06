@@ -11,7 +11,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HikeDetailsViewModel @Inject constructor(
     private val navigator: Navigator,
-    private val hikesRepository: HikesRepository
+    private val hikesRepository: HikesRepository,
+    //private val mushroomRepository: MushroomRepository
 ) : ViewModel() {
     private val _state = MutableStateFlow(HikeDetailsUiState.DEFAULT)
     internal val state: StateFlow<HikeDetailsUiState>
@@ -19,5 +20,17 @@ class HikeDetailsViewModel @Inject constructor(
 
     init {
 
+    }
+
+    fun onBackClicked() {
+        navigator.popBackStack()
+    }
+
+    fun onMushroomClicked() {
+        //navigator.navigateToMushroomDetails()
+    }
+
+    fun onAddMushroomClicked() {
+        //navigator.navigateToCreateMushroom()
     }
 }

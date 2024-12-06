@@ -29,7 +29,8 @@ fun HikesRoute(
 
     HikesScreen(
         state = state,
-        createHike = viewModel::onCreateNewHikeClicked
+        createHike = viewModel::onCreateNewHikeClicked,
+        onHikeClicked = viewModel::onHikeClicked,
     )
 }
 

@@ -7,6 +7,8 @@ import androidx.navigation.compose.composable
 import com.lntu.screens.hike.HikesRoute
 import com.lntu.screens.hike.create_hike.CreateHikeRoute
 import com.lntu.screens.hike.create_hike.createHikeRoute
+import com.lntu.screens.hike.hike_details.HikeDetailsRoute
+import com.lntu.screens.hike.hike_details.hikeDetailsScreenRoute
 import com.lntu.screens.hike.hikesScreenRoute
 
 @Composable
@@ -20,6 +22,9 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable(createHikeRoute) {
             CreateHikeRoute()
+        }
+        composable(hikeDetailsScreenRoute) {
+            HikeDetailsRoute()
         }
     }
 }

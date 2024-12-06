@@ -33,7 +33,7 @@ fun HikeDetailsRoute(
 
     HikeDetailsScreen(
         state = state,
-        onBackClicked = {},
+        onBackClicked = viewModel::onBackClicked,
         onMushroomClicked = {},
         onAddMushroomClicked = {}
     )

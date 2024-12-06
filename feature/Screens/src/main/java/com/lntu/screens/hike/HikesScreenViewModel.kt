@@ -40,15 +40,15 @@ class HikesScreenViewModel @Inject constructor(
     }
 
     fun onCreateNewHikeClicked() {
-        navigator.navigateToCreateHike("1")
+        navigator.navigateToCreateHike()
     }
 
-    fun onHikeClicked() {
-        navigator.navigateToCreateHike("1")
+    fun onHikeClicked(id: String) {
+        navigator.navigateToHikeDetails(id)
     }
 
     fun onHikeEditClicked() {
-        navigator.navigateToCreateHike("1")
+        navigator.navigateToCreateHike()
     }
 
     fun onDeleteHikeClicked(hikeId: String) {
