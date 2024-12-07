@@ -12,7 +12,7 @@ Mushroomer - це мобільний додаток для грибників, �
 
 ## Технології
 
-* Android SDK, Jetpack Compose, Hilt, DataStore, Google Maps Sdk
+* Android SDK, Jetpack Compose, Hilt, DataStore, Google Maps Sdk, MongoRealm, Material3
 
 ## Учасники проекту
 
