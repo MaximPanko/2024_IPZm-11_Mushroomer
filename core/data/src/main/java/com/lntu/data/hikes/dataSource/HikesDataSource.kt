@@ -30,7 +30,7 @@ class HikesDataSource @Inject constructor(
     suspend fun updateHike(id: String, name: String) : HikesDb {
         return withContext(ioDispatcher) {
             realm.writeBlocking {
-                this.query<HikesDb>("_id == $0", ObjectId(id))
+                this.query<HikesDb>("id == $0", ObjectId(id))
                     .find()
                     .first()
                     .apply {
@@ -43,7 +43,7 @@ class HikesDataSource @Inject constructor(
     suspend fun deleteHike(id: String) {
         return withContext(ioDispatcher) {
             realm.writeBlocking {
-                this.query<HikesDb>("_id == $0", ObjectId(id))
+                this.query<HikesDb>("id == $0", ObjectId(id))
                     .find()
                     .first()
                     .let { delete(it) }
@@ -60,7 +60,7 @@ class HikesDataSource @Inject constructor(
 
     fun getHikeById(id: String): Flow<HikesDb> {
         return realm
-            .query<HikesDb>("_id == $0", ObjectId(id))
+            .query<HikesDb>("id == $0", ObjectId(id))
             .first()
             .asFlow()
             .map { it.obj!! }

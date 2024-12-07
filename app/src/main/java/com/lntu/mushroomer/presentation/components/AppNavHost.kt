@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.lntu.screens.hike.HikesRoute
+import com.lntu.screens.hike.create_hike.CreateHikeConstants
 import com.lntu.screens.hike.create_hike.CreateHikeRoute
 import com.lntu.screens.hike.create_hike.createHikeRoute
 import com.lntu.screens.hike.hike_details.HikeDetailsRoute
@@ -26,7 +27,7 @@ fun AppNavHost(navHostController: NavHostController) {
         composable(hikesScreenRoute) {
             HikesRoute(navController = navHostController)
         }
-        composable(createHikeRoute) {
+        composable<CreateHikeConstants.Args> {
             CreateHikeRoute()
         }
         composable<HikeDetailsScreenConstants.Args> {

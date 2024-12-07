@@ -3,6 +3,7 @@ package com.lntu.mushroomer.navigation
 import android.app.Activity
 import androidx.navigation.NavHostController
 import com.lntu.domain.navigation.Navigator
+import com.lntu.screens.hike.create_hike.CreateHikeConstants
 import com.lntu.screens.hike.hike_details.HikeDetailsScreenConstants
 import com.lntu.screens.mushroom.create_mushroom.CreateMushroomConstants
 import com.lntu.screens.mushroom.mushroom_details.MushroomDetailsConstants
@@ -31,7 +32,11 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
     }
 
     override fun navigateToCreateHike() {
-        navHostController?.navigate("create_hike")
+        navHostController?.navigate(CreateHikeConstants.Args())
+    }
+
+    override fun navigateToHikeEdit(id: String) {
+        navHostController?.navigate(CreateHikeConstants.Args(id))
     }
 
     override fun navigateToHikeDetails(id: String) {

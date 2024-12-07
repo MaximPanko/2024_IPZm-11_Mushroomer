@@ -8,6 +8,7 @@ interface Navigator {
     fun popBackStack()
     fun navigateToHikes()
     fun navigateToCreateHike()
+    fun navigateToHikeEdit(id: String)
     fun navigateToHikeDetails(id: String)
     fun navigateToCreateMushroom(id: String?, hikeId: String, name: String?, description: String?, weight: Double?)
     fun navigateToMushroomDetails(id: String)

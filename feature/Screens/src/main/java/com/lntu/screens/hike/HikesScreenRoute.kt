@@ -10,12 +10,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.lntu.presentation.components.MoreDialog
 import com.lntu.presentation.components.bottomNavigation
 import com.lntu.screens.hike.components.HikeItem
 import java.time.LocalDateTime
@@ -35,6 +39,8 @@ fun HikesRoute(
         navController = navController,
         createHike = viewModel::onCreateNewHikeClicked,
         onHikeClicked = viewModel::onHikeClicked,
+        onEditClicked = viewModel::onHikeEditClicked,
+        onDeleteClicked = viewModel::onDeleteHikeClicked
     )
 }
 
@@ -44,8 +50,11 @@ internal fun HikesScreen (
     navController : NavHostController,
     createHike: () -> Unit,
     onHikeClicked: (String) -> Unit = {},
-    onMoreClicked: (HikesScreenUiState.HikeUiState) -> Unit = {}
+    onEditClicked: (String) -> Unit = {},
+    onDeleteClicked: (String) -> Unit = {},
 ) {
+    var moreDialogShown by remember { mutableStateOf<HikesScreenUiState.HikeUiState?>(null) }
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = { bottomNavigation(
@@ -71,9 +80,29 @@ internal fun HikesScreen (
                     .fillMaxWidth()
             ) {
                 state.hikes.forEach { hike ->
-                    HikeItem(hike, onHikeClicked, onMoreClicked)
+                    HikeItem(
+                        hike = hike,
+                        onHikeClicked = onHikeClicked,
+                        onMoreClicked = { moreDialogShown = it }
+                    )
                 }
             }
+            MoreDialog(
+                show = moreDialogShown != null,
+                onDismissRequest = { moreDialogShown = null },
+                onEditClicked = {
+                    moreDialogShown?.let {
+                        onEditClicked(it.id)
+                        moreDialogShown = null
+                    }
+                },
+                onDeleteClicked = {
+                    moreDialogShown?.let {
+                        onDeleteClicked(it.id)
+                        moreDialogShown = null
+                    }
+                }
+            )
         }
     }
 }
@@ -92,6 +121,9 @@ internal fun HikesScreenPreview() {
             )
         ),
         navController = rememberNavController(),
-        createHike = { }
+        createHike = { },
+        onHikeClicked = { },
+        onEditClicked = { },
+        onDeleteClicked = { }
     )
 }
