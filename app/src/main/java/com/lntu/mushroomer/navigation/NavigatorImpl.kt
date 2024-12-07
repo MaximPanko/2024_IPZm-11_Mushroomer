@@ -61,6 +61,18 @@ internal class NavigatorImpl @Inject constructor() : Navigator {
         )
     }
 
+    override fun navigateToEditMushroom(id: String, hikeId: String, name: String, description: String, weight: Double) {
+        navHostController?.navigate(
+            CreateMushroomConstants.Args(
+                id = id,
+                hikeId = hikeId,
+                name = name,
+                description = description,
+                weight = weight
+            )
+        )
+    }
+
     override fun navigateToMushroomDetails(id: String) {
         navHostController?.navigate(MushroomDetailsConstants.Args(id)) {
             popUpTo <MushroomDetailsConstants.Args>()

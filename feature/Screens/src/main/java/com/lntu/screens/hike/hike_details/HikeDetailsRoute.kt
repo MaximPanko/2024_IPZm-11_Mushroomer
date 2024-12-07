@@ -16,11 +16,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.lntu.presentation.components.MoreDialog
+import com.lntu.screens.hike.HikesScreenUiState
 import com.lntu.screens.mushroom.components.MushroomItem
 import kotlinx.serialization.Serializable
 
@@ -42,7 +47,9 @@ fun HikeDetailsRoute(
         state = state,
         onBackClicked = viewModel::onBackClicked,
         onMushroomClicked = viewModel::onMushroomClicked,
-        onAddMushroomClicked = viewModel::onAddMushroomClicked
+        onAddMushroomClicked = viewModel::onAddMushroomClicked,
+        onMushroomEditClicked = viewModel::onMushroomEditClicked,
+        onMushroomDeleteClicked = viewModel::onMushroomDeleteClicked
     )
 }
 
@@ -52,8 +59,11 @@ internal fun HikeDetailsScreen(
     onBackClicked: () -> Unit,
     onMushroomClicked: (String) -> Unit,
     onAddMushroomClicked: () -> Unit,
-    onMoreClicked: (HikeDetailsUiState.MushroomUiState) -> Unit = {}
+    onMushroomEditClicked: (String) -> Unit = {},
+    onMushroomDeleteClicked: (String) -> Unit = {}
 ) {
+    var moreDialogShown by remember { mutableStateOf<HikeDetailsUiState.MushroomUiState?>(null) }
+
     Scaffold(
         topBar = {
             Row {
@@ -82,7 +92,11 @@ internal fun HikeDetailsScreen(
                 modifier = Modifier.fillMaxSize()
             ) {
                 state.mushrooms.forEach { mushroom ->
-                    MushroomItem(mushroom, onMushroomClicked, onMoreClicked)
+                    MushroomItem(
+                        mushroom = mushroom,
+                        onMushroomClicked = onMushroomClicked,
+                        onMoreClicked = { moreDialogShown = it },
+                    )
                 }
             }
             Button(
@@ -94,6 +108,22 @@ internal fun HikeDetailsScreen(
                 Text("Add new mushroom")
             }
         }
+        MoreDialog(
+            show = moreDialogShown != null,
+            onDismissRequest = { moreDialogShown = null },
+            onEditClicked = {
+                moreDialogShown?.let {
+                    onMushroomEditClicked(it.id)
+                    moreDialogShown = null
+                }
+            },
+            onDeleteClicked = {
+                moreDialogShown?.let {
+                    onMushroomDeleteClicked(it.id)
+                    moreDialogShown = null
+                }
+            }
+        )
     }
 }
 
@@ -115,6 +145,8 @@ fun HikeDetailsScreenPreview() {
         ),
         onBackClicked = {},
         onMushroomClicked = {},
-        onAddMushroomClicked = {}
+        onAddMushroomClicked = {},
+        onMushroomEditClicked = {},
+        onMushroomDeleteClicked = {}
     )
 }

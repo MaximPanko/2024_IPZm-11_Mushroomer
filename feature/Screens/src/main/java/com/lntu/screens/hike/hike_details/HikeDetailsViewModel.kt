@@ -62,4 +62,15 @@ class HikeDetailsViewModel @Inject constructor(
     fun onAddMushroomClicked() {
         navigator.navigateToCreateMushroom(id = null, hikeId = state.value.id, name = null, description = null, weight = null)
     }
+
+    fun onMushroomEditClicked(mushroomId: String) {
+        val mushroom = state.value.mushrooms.first { it.id == mushroomId }
+        navigator.navigateToCreateMushroom(id = mushroom.id, hikeId = mushroom.hikeId, name = mushroom.name, description = mushroom.description, weight = mushroom.weight)
+    }
+
+    fun onMushroomDeleteClicked(mushroomId: String) {
+        viewModelScope.launch {
+            mushroomRepository.deleteMushroom(mushroomId)
+        }
+    }
 }
