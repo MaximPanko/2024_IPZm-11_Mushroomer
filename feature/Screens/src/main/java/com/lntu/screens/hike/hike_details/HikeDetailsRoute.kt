@@ -1,31 +1,37 @@
 package com.lntu.screens.hike.hike_details
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.lntu.presentation.components.MoreDialog
-import com.lntu.screens.hike.HikesScreenUiState
+import com.lntu.screens.R
 import com.lntu.screens.mushroom.components.MushroomItem
 import kotlinx.serialization.Serializable
 
@@ -35,7 +41,6 @@ object HikeDetailsScreenConstants {
         val id: String
     )
 }
-
 
 @Composable
 fun HikeDetailsRoute(
@@ -53,6 +58,7 @@ fun HikeDetailsRoute(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun HikeDetailsScreen(
     state: HikeDetailsUiState,
@@ -66,27 +72,32 @@ internal fun HikeDetailsScreen(
 
     Scaffold(
         topBar = {
-            Row {
-                IconButton(
-                    onClick = { onBackClicked() }
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = "Back"
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.mushrooms),
+                        fontWeight = FontWeight.Bold
                     )
-                }
-                Icon(
-                    modifier = Modifier.weight(1f),
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "Logo"
+                },
+                navigationIcon = {
+                    IconButton(onClick = { onBackClicked() }) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                    containerColor = Color(0xFF2E7D32)
                 )
-            }
+            )
         }
     ) { innerPadding ->
-        Box(
+        Column(
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize()
+                .padding(16.dp),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize()
@@ -98,14 +109,21 @@ internal fun HikeDetailsScreen(
                         onMoreClicked = { moreDialogShown = it },
                     )
                 }
-            }
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter),
-                onClick = { onAddMushroomClicked() }
-            ) {
-                Text("Add new mushroom")
+
+                Button(
+                    onClick = { onAddMushroomClicked() },
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF66AB6A))
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.add_mushroom),
+                        color = Color.Black,
+                        fontSize = 18.sp
+                    )
+                }
             }
         }
         MoreDialog(

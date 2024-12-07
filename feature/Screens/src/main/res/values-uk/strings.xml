@@ -2,4 +2,18 @@
 <resources>
     <string name="app_name">Mushroomer</string>
     <string name="create_hike">Створити похід</string>
+    <string name="welcome_message">Привіт</string>
+    <string name="welcome_description">Ти готовий до мандрівки знайомими місцями?</string>
+    <string name="start_button">Почати</string>
+    <string name="my_routes">Мої маршрути</string>
+    <string name="mushrooms">Гриби</string>
+    <string name="add_mushroom">Додати гриб</string>
+    <string name="add_trip">Додати подорож</string>
+    <string name="enter_name">Впишіть назву</string>
+    <string name="name">Назва</string>
+    <string name="Continue">Продовжити</string>
+    <string name="add">Додати</string>
+    <string name="description">Опис</string>
+    <string name="weight">Вага</string>
+    <string name="language">Мова</string>
 </resources>

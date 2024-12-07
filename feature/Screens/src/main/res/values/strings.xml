@@ -2,4 +2,18 @@
 <resources>
     <string name="app_name">Mushroomer</string>
     <string name="create_hike">Create hike</string>
+    <string name="welcome_message">Hello!</string>
+    <string name="welcome_description">Are you ready to travel to familiar places?</string>
+    <string name="start_button">Start</string>
+    <string name="my_routes">My routes </string>
+    <string name="mushrooms"> Mushrooms</string>
+    <string name="add_mushroom">Add mushroom</string>
+    <string name="add_trip">Add trip</string>
+    <string name="enter_name">Enter name</string>
+    <string name="name">Name</string>
+    <string name="Continue">Continue</string>
+    <string name="add">Add</string>
+    <string name="description">Description</string>
+    <string name="weight"></string>
+    <string name="language">Language</string>
 </resources>

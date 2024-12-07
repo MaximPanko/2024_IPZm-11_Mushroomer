@@ -1,4 +1,4 @@
-package com.lntu.presentation.components
+package com.lntu.screens.hike.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +11,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import com.lntu.screens.hike.create_hike.CreateHikeConstants
 
 @Composable
 fun bottomNavigation(
@@ -28,7 +29,7 @@ fun bottomNavigation(
             contentDescription = "Home"
         ) }
         IconButton(
-            onClick = { navHostController.navigate("create_hike") },
+            onClick = { navHostController.navigate(CreateHikeConstants.Args()) },
             modifier = Modifier.weight(1f)
         ) {
             Icon(
