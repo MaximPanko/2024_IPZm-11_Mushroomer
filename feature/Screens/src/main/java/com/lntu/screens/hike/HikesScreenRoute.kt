@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.lntu.presentation.components.bottomNavigation
 import com.lntu.screens.hike.components.HikeItem
 import java.time.LocalDateTime
@@ -23,12 +25,14 @@ const val hikesScreenRoute = "hikes_screen_route"
 
 @Composable
 fun HikesRoute(
+    navController: NavHostController,
     viewModel: HikesScreenViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     HikesScreen(
         state = state,
+        navController = navController,
         createHike = viewModel::onCreateNewHikeClicked,
         onHikeClicked = viewModel::onHikeClicked,
     )
@@ -37,13 +41,16 @@ fun HikesRoute(
 @Composable
 internal fun HikesScreen (
     state: HikesScreenUiState,
+    navController : NavHostController,
     createHike: () -> Unit,
     onHikeClicked: (String) -> Unit = {},
     onMoreClicked: (HikesScreenUiState.HikeUiState) -> Unit = {}
 ) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        bottomBar = { bottomNavigation() }
+        bottomBar = { bottomNavigation(
+            navHostController = navController
+        ) }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -84,6 +91,7 @@ internal fun HikesScreenPreview() {
                 )
             )
         ),
+        navController = rememberNavController(),
         createHike = { }
     )
 }

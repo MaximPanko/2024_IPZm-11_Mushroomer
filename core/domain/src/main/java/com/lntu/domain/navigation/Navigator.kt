@@ -11,4 +11,6 @@ interface Navigator {
     fun navigateToHikeDetails(id: String)
     fun navigateToCreateMushroom(id: String?, hikeId: String, name: String?, description: String?, weight: Double?)
     fun navigateToMushroomDetails(id: String)
+    fun navigateToSettings()
+    fun restartApp()
 }

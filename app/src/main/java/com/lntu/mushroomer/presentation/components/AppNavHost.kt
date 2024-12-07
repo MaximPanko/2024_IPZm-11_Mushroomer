@@ -14,6 +14,8 @@ import com.lntu.screens.mushroom.create_mushroom.CreateMushroomConstants
 import com.lntu.screens.mushroom.create_mushroom.CreateMushroomRoute
 import com.lntu.screens.mushroom.mushroom_details.MushroomDetailsConstants
 import com.lntu.screens.mushroom.mushroom_details.MushroomDetailsRoute
+import com.lntu.screens.settings.SettingsScreenRoute
+import com.lntu.screens.settings.settingsScreenRoute
 
 @Composable
 fun AppNavHost(navHostController: NavHostController) {
@@ -22,7 +24,7 @@ fun AppNavHost(navHostController: NavHostController) {
         startDestination = hikesScreenRoute
     ) {
         composable(hikesScreenRoute) {
-            HikesRoute()
+            HikesRoute(navController = navHostController)
         }
         composable(createHikeRoute) {
             CreateHikeRoute()
@@ -35,6 +37,9 @@ fun AppNavHost(navHostController: NavHostController) {
         }
         composable<MushroomDetailsConstants.Args> {
             MushroomDetailsRoute()
+        }
+        composable(settingsScreenRoute) {
+            SettingsScreenRoute(navController = navHostController)
         }
     }
 }
